@@ -62,6 +62,12 @@ public class Driver implements java.sql.Driver {
     final Driver driver = new Driver();
     DriverManager.registerDriver(driver);
     registeredDriver = driver;
+
+    try {
+      Class.forName("com.mysql.cj.jdbc.Driver");
+    } catch (ClassNotFoundException e) {
+      throw new RuntimeException(e);
+    }
   }
 
   public static void deregister() throws SQLException {
